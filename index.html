@@ -4,10 +4,10 @@
     </head>
     <body style="background-color: #111111; color:#FFFFFF;>
         <center>
-            <p id="ip-address"></p>
-            <p id="isp"></p>
-            <p id="region"></p>
-            <p id="hostname"></p>
+            <p id="ip-address">IP: error</p>
+            <p id="isp">ISP: error</p>
+            <p id="region">Region: error</p>
+            <p id="hostname">Hostname: error</p>
             <p id="user-agent"></p>
             <p id="platform"></p>
         </center>
@@ -19,7 +19,7 @@
                     .then(response => response.json())
                     .then(data => {
                         const ip = data.ip;
-                        document.getElementById("ip-address").textContent = `IP Address: ${ip}`;
+                        document.getElementById("ip-address").textContent = `IP: ${ip}`;
 
                         // Fetch additional details from ipapi
                         return fetch(`https://ipapi.co/${ip}/json/`);
