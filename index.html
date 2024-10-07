@@ -7,6 +7,7 @@
             <h1 id="ip-address"></h1>
             <h1 id="isp"></h1>
             <h1 id="location"></h1>
+            <h1 id="country"></h1>
             <h1 id="postal"></h1>
             <h1 id="user-agent"></h1>
             <h1 id="platform"></h1>
@@ -27,6 +28,7 @@
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById("isp").textContent = `ISP: ${data.org}`;
+                        document.getElementById("country").textContent = `Country: ${data.country_name}`;
                         document.getElementById("postal").textContent = `Postal code: ${data.postal}`;
                         document.getElementById("location").textContent = `Location: ${data.latitude}, ${data.longitude}`;
                     })
