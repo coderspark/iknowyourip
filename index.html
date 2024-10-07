@@ -2,14 +2,14 @@
     <head>
         <title>im not lying</title>
     </head>
-    <body style="background-color: #111111; color:#FFFFFF;>
+    <body style="background-color: #111111; color:#FFFFFF">
         <center>
-            <p id="ip-address">IP: error</p>
-            <p id="isp">ISP: error</p>
-            <p id="region">Region: error</p>
-            <p id="hostname">Hostname: error</p>
-            <p id="user-agent"></p>
-            <p id="platform"></p>
+            <h1 id="ip-address"></h1>
+            <h1 id="isp"></h1>
+            <h1 id="location"></h1>
+            <h1 id="postal"></h1>
+            <h1 id="user-agent"></h1>
+            <h1 id="platform"></h1>
         </center>
 
         <script>
@@ -19,7 +19,7 @@
                     .then(response => response.json())
                     .then(data => {
                         const ip = data.ip;
-                        document.getElementById("ip-address").textContent = `IP: ${ip}`;
+                        document.getElementById("ip-address").textContent = `IP Address: ${ip}`;
 
                         // Fetch additional details from ipapi
                         return fetch(`https://ipapi.co/${ip}/json/`);
@@ -27,8 +27,8 @@
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById("isp").textContent = `ISP: ${data.org}`;
-                        document.getElementById("region").textContent = `Region: ${data.region}`;
-                        document.getElementById("hostname").textContent = `Hostname: ${data.hostname}`;
+                        document.getElementById("postal").textContent = `Postal code: ${data.postal}`;
+                        document.getElementById("location").textContent = `Location: ${data.latitude}, ${data.longitude}`;
                     })
                     .catch(error => console.error('Error fetching data:', error));
 
