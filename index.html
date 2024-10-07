@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>im not lying</title>
+    </head>
+    <body>
+        <center>
+            <h1 id="ip-address"></h1>
+            <h1 id="isp"></h1>
+            <h1 id="region"></h1>
+            <h1 id="hostname"></h1>
+            <h1 id="user-agent"></h1>
+            <h1 id="platform"></h1>
+        </center>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fetch the IP address from ipify
+                fetch("https://api.ipify.org?format=json")
+                    .then(response => response.json())
+                    .then(data => {
+                        const ip = data.ip;
+                        document.getElementById("ip-address").textContent = `IP Address: ${ip}`;
+
+                        // Fetch additional details from ipapi
+                        return fetch(`https://ipapi.co/${ip}/json/`);
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("isp").textContent = `ISP: ${data.org}`;
+                        document.getElementById("region").textContent = `Region: ${data.region}`;
+                        document.getElementById("hostname").textContent = `Hostname: ${data.hostname}`;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+                // Fetch the user agent from the navigator object
+                const userAgent = navigator.userAgent;
+                document.getElementById("user-agent").textContent = `User Agent: ${userAgent}`;
+
+                // Fetch the platform from the navigator object
+                const platform = navigator.platform;
+                document.getElementById("platform").textContent = `Platform: ${platform}`;
+            });
+        </script>
+    </body>
+</html>
